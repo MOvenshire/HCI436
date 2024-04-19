@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-size: 18px; /* Increase base font size for better visibility */
+            display: flex;
+            font-family: Arial, sans-serif; /* Sets a readable, neat font */
+        }
+        .rightsidebar {
+            width: 9%;
+            padding: 20px; /* Adds some padding inside the sidebar */
+            height: 100vh; /* Full height */
+            background-color:lightgray;
+        }
+        .select-event {
+            width: 90%;
+            padding-right: 10px;
+        }
+        .form-section {
+            display: inline-block;
+            vertical-align: top;
+            margin-right: 10px;
+            width: 100%;
+        }
+        .date-section {
+            display: flex;
+            justify-content: space-between; /* Ensures spacing between the date inputs */
+        }
+        .fiftyfifty {
+            width: 48%; /* Adjusted for padding */
+            padding: 10px; /* Adding some padding for visual separation */
+        }
+        .event-type, .priority-type, .flexible-type {
+            display: inline-block;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        .event-type img, .priority-type img {
+            width: 80px; /* Increasing image size */
+            vertical-align: middle;
+        }
+        .event-type input:checked + img, 
+        .priority-type input:checked + img {
+            border: 3px solid blue; /* Thicker border for better visibility */
+        }
+        .flexible-type input:checked + label {
+            border: 3px solid blue; /* Thicker border for better visibility */
+        }
+        .label-container {
+            margin-bottom: 15px; /* More space below labels */
+        }
+        input[type="text"], input[type="datetime-local"] {
+            padding: 12px;
+            width: 100%; /* Adjusts width to take up the full container */
+            margin: 5px 0;
+            border: 2px solid #ccc; /* Adds a subtle border */
+            border-radius: 4px; /* Rounds the corners */
+            box-sizing: border-box; /* Adjusts box-sizing to include padding and border in width */
+            font-size: 16px; /* Slightly smaller font for input */
+        }
+        input[type="submit"] {
+            padding: 12px 24px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #4CAF50; /* Adds a green background for visibility */
+            color: white; /* White text color */
+            border: none; /* Removes border */
+            border-radius: 4px; /* Rounded corners */
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049; /* Darker shade on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="select-event">
+    <h2>Create New Event</h2>
+    <form action="/action_page.php">
+        <label for="EventName"><b>Event name:</b></label>
+        <input type="text" id="EventName" name="EventName"><br><br>
+        
+        <div class="form-section">
+            <div class="label-container"><b>Event Type:</b></div>
+            <!-- Repeated for each event type -->
+            <label class="event-type">
+            <input type="radio" name="EventType" value="Seminar" id="Seminar">
+            <img src="images/seminar-icon.png" alt="Seminar">
+        </label>
+        <label class="event-type">
+            <input type="radio" name="EventType" value="Meeting" id="Meeting">
+            <img src="images/meeting-icon.png" alt="Meeting">
+        </label>
+        <label class="event-type">
+            <input type="radio" name="EventType" value="Party" id="Party">
+            <img src="images/party-icon.png" alt="Party">
+        </label>
+        <label class="event-type">
+            <input type="radio" name="EventType" value="Bed" id="Bed">
+            <img src="images/bed-icon.png" alt="Bed">
+        </label>
+        <label class="event-type">
+            <input type="radio" name="EventType" value="Clown" id="Clown">
+            <img src="images/clown-icon.png" alt="Clown">
+        </label>
+        <label class="event-type">
+            <input type="radio" name="EventType" value="Plane" id="Plane">
+            <img src="images/plane-icon.png" alt="Plane">
+        </label>
+        <label class="event-type">
+            <input type="radio" name="EventType" value="work" id="work">
+            <img src="images/work-icon.png" alt="Work">
+        </label>
+        <label class="event-type">
+            <input type="radio" name="EventType" value="Food" id="Food">
+            <img src="images/food-icon.png" alt="Food">
+        </label>
+        <label class="event-type">
+            <input type="radio" name="EventType" value="Appointment" id="Appointment">
+            <img src="images/appointment-icon.png" alt="Appointment">
+        </label>
+        <label class="event-type">
+            <input type="radio" name="EventType" value="Hydrate" id="Hydrate">
+            <img src="images/hydrate-icon.png" alt="Hydrate">
+        </label><br><br>
+        </div>
+
+        <div class="form-section">
+            <div class="label-container"><b>Priority:</b></div>
+            <label class="priority-type">
+                <input type="radio" name="Priority" value="1">
+                <img src="images/priority1-icon.png" alt="!">
+            </label>
+            <label class="priority-type">
+                <input type="radio" name="Priority" value="2">
+                <img src="images/priority2-icon.png" alt="!!">
+            </label>
+            <label class="priority-type">
+                <input type="radio" name="Priority" value="3">
+                <img src="images/priority3-icon.png" alt="!!!">
+            </label>
+        </div>
+
+        <div class="form-section">
+            <div class="label-container"><b>Flexible:</b></div>
+            <label class="flexible-type">
+                <input type="radio" name="Flexible" value="Yes" id="FlexibleYes">
+                <label for="FlexibleYes">Yes</label>
+            </label>
+            <label class="flexible-type">
+                <input type="radio" name="Flexible" value="No" id="FlexibleNo">
+                <label for="FlexibleNo">No</label>
+            </label>
+        </div><br><br>
+
+        <div class="form-section date-section">
+            <div class="fiftyfifty">
+                <div class="label-container"><b>Start Date:</b></div>
+                <input type="datetime-local" id="StartDate" name="StartDate"><br><br>
+            </div>
+            <div class="fiftyfifty">
+                <div class="label-container"><b>End Date:</b></div>
+                <input type="datetime-local" id="EndDate" name="EndDate"><br><br>
+            </div>
+        </div>
+
+        <input type="submit" value="Submit">
+    </form>
+    </div>  
+    <div class="rightsidebar">
+
+    </div>
+</body>
+</html>
