@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/addons/p5.sound.min.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+
+</head>
+<body>
+<p>Google Calendar API Quickstart</p>
+
+<!--Add buttons to initiate auth sequence and sign out-->
+<button id="authorize_button" style="display: none;">Authorize</button>
+<button id="signout_button" style="display: none;">Sign Out</button>
+<a href="addEvent.html">
+    <button type="button">Add Event</button>
+</a>
+
+<pre id="content" style="white-space: pre-wrap;"></pre>
+<div class="ui container">
+
+    <div class="ui container">
+        <div class="ui grid">
+            <div class="ui sixteen column">
+                <div id="calendar"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="sketch.js"></script>
+<script src="calendar.js"></script>
+<script src="googleapi.js"></script>
+<script async defer src="https://apis.google.com/js/api.js"
+        onload="this.onload=function(){};handleClientLoad()"
+        onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
+
+</body>
+</html>
