@@ -209,23 +209,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
     <script>
         $(document).ready(function() {
-        $('#eventForm').submit(function(e) {
-            e.preventDefault();
+            $('#eventForm').submit(function(e) {
+                e.preventDefault();
 
-            var event = {
-                title: $('#EventName').val(),
-                start: $('#StartDate').val(),
-                end: $('#EndDate').val(),
-                allDay: false // or true based on your input types
-            };
-
-            // Save the event to local storage
-            localStorage.setItem('newEvent', JSON.stringify(event));
-
-            // Optionally, redirect to the calendar page or display a message
-            alert('Event saved! Navigate to the calendar page to see it.');
+                // Check if the user is signed in
+                if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
+                    var newEvent = {
+                        title: $('#EventName').val(),
+                        start: $('#StartDate').val(),
+                        end: $('#EndDate').val(),
+                        description: 'Type: ' + $('input[name="EventType"]:checked').val() + '; Flexible: ' + $('input[name="Flexible"]:checked').val()
+                    };
+                    // Create event on Google Calendar
+                    createGoogleCalendarEvent(newEvent);
+                } else {
+                    alert('You must be signed in to add events to your Google Calendar.');
+                }
+            });
         });
-    });
+
+
     </script>
 </body>
 </html>
