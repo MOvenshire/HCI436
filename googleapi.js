@@ -1,13 +1,13 @@
 // Client ID and API key from the Developer Console
-// var CLIENT_ID = '.apps.googleusercontent.com';
-var API_KEY = 'AIzaSyC7MUf9Clgp3zh7YTxsZbBwujRfYuMQOL8';
+var CLIENT_ID = process.env.CLIENT_ID;
+var API_KEY = process.env.API_KEY;
 
 // Array of API discovery doc URLs for APIs used by the quickstart
 var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
 
 // Authorization scopes required by the API; multiple scopes can be
 // included, separated by spaces.
-var SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
+//var SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
 
 var authorizeButton = document.getElementById('authorize_button');
 var signoutButton = document.getElementById('signout_button');
@@ -28,7 +28,7 @@ function initClient() {
         apiKey: API_KEY,
         clientId: CLIENT_ID,
         discoveryDocs: DISCOVERY_DOCS,
-        scope: SCOPES
+        //scope: SCOPES
     }).then(function () {
         // Listen for sign-in state changes.
         gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
