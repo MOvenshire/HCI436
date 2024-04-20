@@ -208,26 +208,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#eventForm').submit(function(e) {
-                e.preventDefault();
+        $('#eventForm').submit(function(e) {
+            e.preventDefault();
 
-                // Check if the user is signed in
-                if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
-                    var newEvent = {
-                        title: $('#EventName').val(),
-                        start: $('#StartDate').val(),
-                        end: $('#EndDate').val(),
-                        description: 'Type: ' + $('input[name="EventType"]:checked').val() + '; Flexible: ' + $('input[name="Flexible"]:checked').val()
-                    };
-                    // Create event on Google Calendar
-                    createGoogleCalendarEvent(newEvent);
-                } else {
-                    alert('You must be signed in to add events to your Google Calendar.');
-                }
-            });
+            var event = {
+                title: $('#EventName').val(),
+                start: $('#StartDate').val(),
+                end: $('#EndDate').val(),
+                eventtype: $('input[name="EventType"]:checked').val(),
+                priority: $('input[name="Priority"]:checked').val(),
+                flexible: $('input[name="Flexible"]:checked').val()
+            };
+
+            // Retrieve events from local storage or initialize if not present
+            var events = JSON.parse(localStorage.getItem('events')) || [];
+
+            // Add the new event to the array
+            events.push(event);
+
+            // Save the updated events array back to local storage
+            localStorage.setItem('events', JSON.stringify(events));
+
+            // Redirect to the calendar page or display a message
+            alert('Event saved! Navigate to the calendar page to see it.');
         });
-
 
     </script>
 </body>
