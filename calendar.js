@@ -7,30 +7,40 @@ $(document).ready(function() {
             right: 'month,basicWeek,basicDay'
         },
         defaultDate: new Date(),
-        navLinks: true,
         editable: true,
-        eventLimit: true
-    });
-
-    // Handle form submission
-    $('#eventForm').submit(function(e) {
-        e.preventDefault();  // Prevent the default form submission
-
-        var eventName = $('#EventName').val();
-        var startDate = $('#StartDate').val();
-        var endDate = $('#EndDate').val();
-
-        // Add event to the calendar
-        $('#calendar').fullCalendar('renderEvent', {
-            title: eventName,
-            start: startDate,
-            end: endDate,
-            allDay: true  // or determine based on your start/end times
-        });
-
-        // Optionally, clear the form fields
-        $('#EventName').val('');
-        $('#StartDate').val('');
-        $('#EndDate').val('');
+        navLinks: true,
+        eventLimit: true,
+        events: function(start, end, timezone, callback) {
+            var storedEvents = localStorage.getItem('events');  // Changed from 'newEvents' to 'events'
+            if (storedEvents) {
+                storedEvents = JSON.parse(storedEvents).map(event => ({
+                    ...event,
+                    color: determineColor(event.priority),  // Apply color based on priority
+                    title: `${event.title} - ${event.eventtype} (Priority: ${event.priority})`,
+                    start: event.start,  // Ensure date format is correct
+                    end: event.end
+                }));
+                callback(storedEvents);
+            } else {
+                callback([]);
+            }
+        }
     });
 });
+function determineColor(priority) {
+    switch (priority) {
+        case '1': return '#ffadad'; // Light red
+        case '2': return '#ffd6a5'; // Light orange
+        case '3': return '#fdffb6'; // Light yellow
+        default: return '#caffbf'; // Light green
+    }
+}
+
+function clearFormFields() {
+    $('#EventName').val('');
+    $('#StartDate').val('');
+    $('#EndDate').val('');
+    $('input[name="EventType"]').prop('checked', false);
+    $('input[name="Priority"]').prop('checked', false);
+    $('input[name="Flexible"]').prop('checked', false);
+}

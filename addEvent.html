@@ -148,7 +148,12 @@
         <label class="event-type">
             <input type="radio" name="EventType" value="Hydrate" id="Hydrate">
             <img src="images/hydrate-icon.png" alt="Hydrate">
-        </label><br><br>
+        </label>
+        <label class="event-type">
+            <input type="radio" name="EventType" value="Study" id="Study">
+            <img src="images/hydrate-icon.png" alt="Hydrate">
+        </label>
+        <br><br>
         </div>
 
         <div class="form-section">
@@ -204,25 +209,82 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script>
         $(document).ready(function() {
-        $('#eventForm').submit(function(e) {
-            e.preventDefault();
+            $('#eventForm').submit(function(e) {
+                e.preventDefault();
 
-            var event = {
-                title: $('#EventName').val(),
-                start: $('#StartDate').val(),
-                end: $('#EndDate').val(),
-                allDay: false // or true based on your input types
-            };
+                // Retrieve event form values
+                var eventName = $('#EventName').val();
+                var startDate = $('#StartDate').val();
+                var endDate = $('#EndDate').val();
+                var eventType = $('input[name="EventType"]:checked').val();
+                var priority = $('input[name="Priority"]:checked').val();
+                var flexible = $('input[name="Flexible"]:checked').val();
 
-            // Save the event to local storage
-            localStorage.setItem('newEvent', JSON.stringify(event));
+                var events = [];
 
-            // Optionally, redirect to the calendar page or display a message
-            alert('Event saved! Navigate to the calendar page to see it.');
+                if (eventType === 'Study') {
+                    var startMoment = moment(startDate);
+                    var endMoment = moment(endDate);
+
+                    while (startMoment < endMoment) {
+                        var sessionEnd = moment(startMoment).add(25, 'minutes');
+                        if (sessionEnd > endMoment) sessionEnd = endMoment;
+
+                        events.push({
+                            title: eventName,
+                            start: startMoment.format(),
+                            end: sessionEnd.format(),
+                            allDay: false,
+                            eventtype: eventType,
+                            priority: priority,
+                            flexible: flexible
+                        });
+
+                        startMoment = sessionEnd;
+
+                        if (startMoment < endMoment) {
+                            var breakEnd = moment(startMoment).add(5, 'minutes');
+                            if (breakEnd > endMoment) breakEnd = endMoment;
+
+                            events.push({
+                                title: eventName + " Break",
+                                start: startMoment.format(),
+                                end: breakEnd.format(),
+                                allDay: false,
+                                type: 'Break'
+                            });
+
+                            startMoment = breakEnd;
+                        }
+                    }
+                } else {
+                    // For other event types, just use a single event
+                    events.push({
+                        title: eventName,
+                        start: startDate,
+                        end: endDate,
+                        allDay: false,
+                        eventtype: eventType,
+                        priority: priority,
+                        flexible: flexible
+                    });
+                }
+
+                // Retrieve and combine events from local storage
+                var existingEvents = JSON.parse(localStorage.getItem('events')) || [];
+                var combinedEvents = existingEvents.concat(events);
+                localStorage.setItem('events', JSON.stringify(combinedEvents));
+
+                alert('Event(s) saved! Navigate to the calendar page to see them.');
+            });
         });
-    });
     </script>
+
+        
+        
+        
 </body>
 </html>
