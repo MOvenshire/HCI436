@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .profile-container {
+            width: 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #eee;
+        }
+        img {
+            width: 100%;
+            height: auto;
+        }
+        h2, h3 {
+            text-align: center;
+            color: #333;
+        }
+        .info {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        .info span {
+            font-weight: bold;
+        }
+        .info i {
+            color: #007bff; /* Font Awesome icon color */
+            margin-right: 8px; /* Space between icon and text */
+        }
+
+        .info p {
+            font-size: 16px; /* Adjusts the font size of the info text */
+            line-height: 1.5; /* Improves readability by increasing line height */
+        }
+        .buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button {
+            text-decoration: none;
+            color: white;
+            background: #007bff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <i class="fas fa-envelope" aria-hidden="true"></i>
+        <div class="profile-image">
+            <!-- Assuming the profile image is added here -->
+            <img src="profile_picture.jpg" alt="Profile Image">
+        </div>
+        <h2>John Doe</h2>
+        <div class="info">
+            <p><i class="fas fa-envelope"></i> <span>Email:</span> john.doe@example.com</p>
+            <p><i class="fas fa-phone"></i> <span>Phone:</span> +1234567890</p>
+            <p><i class="fas fa-map-marker-alt"></i> <span>Location:</span> New York, USA</p>
+        </div>
+        <div class="buttons">
+            <a href="calendar.html" class="button">Back to Calendar</a>
+        </div>
+    </div>
+    
+</body>
+</html>

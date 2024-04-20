@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Time Tumbler</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/addons/p5.dom.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/addons/p5.sound.min.js"></script>
@@ -11,31 +12,53 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="sidebar.css">
     <meta charset="utf-8" />
-
+    <style>
+        body {
+            display: flex; 
+            width: 100%;
+            margin: 0; 
+            height: 100%; 
+            font-family: Arial, sans-serif; 
+        }
+        .calendar-container {
+            width: 90%; 
+        }
+        
+    </style>
 </head>
 <body>
-<p>Google Calendar API Quickstart</p>
+<div class="calendar-container">
+    <!--Add buttons to initiate auth sequence and sign out-->
+    <button id="authorize_button">Authorize</button>
+    <button id="signout_button">Sign Out</button>
 
-<!--Add buttons to initiate auth sequence and sign out-->
-<button id="authorize_button" style="display: none;">Authorize</button>
-<button id="signout_button" style="display: none;">Sign Out</button>
-<a href="addEvent.html">
-    <button type="button">Add Event</button>
-</a>
-
-<pre id="content" style="white-space: pre-wrap;"></pre>
-<div class="ui container">
-
+    <pre id="content" style="white-space: pre-wrap;"></pre>
     <div class="ui container">
-        <div class="ui grid">
-            <div class="ui sixteen column">
-                <div id="calendar"></div>
+
+        <div class="ui container">
+            <div class="ui grid">
+                <div class="ui sixteen column">
+                    <div id="calendar"></div>
+                </div>
             </div>
         </div>
     </div>
-
 </div>
+
+<div class="rightsidebar">
+    <a href="settings.html">
+        <button type="button">Settings</button>
+    </a>
+    <a href="profile.html">
+        <button type="button">Profile</button>
+    </a>
+    <a href="addEvent.html">
+        <button type="button">Add Event</button>
+    </a>
+</div>
+
 <script>
     $(document).ready(function() {
         // Initialize the calendar
