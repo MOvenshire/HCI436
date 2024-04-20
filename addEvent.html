@@ -11,8 +11,7 @@
             font-family: Arial, sans-serif; /* Sets a readable, neat font */
         }
         .rightsidebar {
-            width: 9%;
-            padding: 20px; /* Adds some padding inside the sidebar */
+            width: 10%;
             height: 100vh; /* Full height */
             background-color:lightgray;
         }
@@ -75,14 +74,40 @@
         input[type="submit"]:hover {
             background-color: #45a049; /* Darker shade on hover */
         }
+        input[type="submit"] {
+            padding: 12px 24px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #4CAF50; /* Adds a green background for visibility */
+            color: white; /* White text color */
+            border: none; /* Removes border */
+            border-radius: 4px; /* Rounded corners */
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+        }
+        input[type="submit"]:hover, .cancel-button:hover {
+            background-color: #45a049; /* Darker shade on hover */
+        }
+        .cancel-button {
+            padding: 12px 24px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #f44336; /* Red background for the cancel button */
+            color: white; /* White text color */
+            border: none; /* Removes border */
+            border-radius: 4px; /* Rounded corners */
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+        }
+        .cancel-button:hover {
+            background-color: #d32f2f; /* Darker red shade on hover */
+        }
     </style>
 </head>
 <body>
     <div class="select-event">
-    <h2>Create New Event</h2>
-    <form action="/action_page.php">
+        <h2>Create New Event</h2>
+        <form id="eventForm">
         <label for="EventName"><b>Event name:</b></label>
-        <input type="text" id="EventName" name="EventName"><br><br>
+        <input type="text" id="EventName" name="EventName" required><br><br>
         
         <div class="form-section">
             <div class="label-container"><b>Event Type:</b></div>
@@ -133,15 +158,19 @@
             <div class="label-container"><b>Priority:</b></div>
             <label class="priority-type">
                 <input type="radio" name="Priority" value="1">
+                <img src="images/na.png" alt="NA">
+            </label>
+            <label class="priority-type">
+                <input type="radio" name="Priority" value="1">
                 <img src="images/priority1-icon.png" alt="!">
             </label>
             <label class="priority-type">
                 <input type="radio" name="Priority" value="2">
-                <img src="images/priority2-icon.png" alt="!!">
+                <img src="images/double.png" alt="!!">
             </label>
             <label class="priority-type">
                 <input type="radio" name="Priority" value="3">
-                <img src="images/priority3-icon.png" alt="!!!">
+                <img src="images/triple.png" alt="!!!">
             </label>
         </div>
 
@@ -160,19 +189,43 @@
         <div class="form-section date-section">
             <div class="fiftyfifty">
                 <div class="label-container"><b>Start Date:</b></div>
-                <input type="datetime-local" id="StartDate" name="StartDate"><br><br>
+                <input type="datetime-local" id="StartDate" name="StartDate" required><br><br>
             </div>
             <div class="fiftyfifty">
                 <div class="label-container"><b>End Date:</b></div>
-                <input type="datetime-local" id="EndDate" name="EndDate"><br><br>
+                <input type="datetime-local" id="EndDate" name="EndDate" required><br><br>
             </div>
         </div>
 
         <input type="submit" value="Submit">
+        <a href="calendar.html">
+            <button type="button" class="cancel-button">Cancel</button>
+        </a>
     </form>
     </div>  
-    <div class="rightsidebar">
+    <div class="rightsidebar"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+    <script>
+        $(document).ready(function() {
+        $('#eventForm').submit(function(e) {
+            e.preventDefault();
 
-    </div>
+            var event = {
+                title: $('#EventName').val(),
+                start: $('#StartDate').val(),
+                end: $('#EndDate').val(),
+                allDay: false // or true based on your input types
+            };
+
+            // Save the event to local storage
+            localStorage.setItem('newEvent', JSON.stringify(event));
+
+            // Optionally, redirect to the calendar page or display a message
+            alert('Event saved! Navigate to the calendar page to see it.');
+        });
+    });
+    </script>
 </body>
 </html>

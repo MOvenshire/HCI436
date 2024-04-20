@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    // Initialize the calendar
     $('#calendar').fullCalendar({
         header: {
             left: 'prev,next today',
@@ -7,7 +7,7 @@ $(document).ready(function() {
             right: 'month,basicWeek,basicDay'
         },
         defaultDate: new Date(),
-        navLinks: true, // can click day/week names to navigate views
+        navLinks: true,
         editable: true,
         eventLimit: true, // allow "more" link when too many events
         events: function(start, end, timezone, callback) {
@@ -34,4 +34,25 @@ $(document).ready(function() {
         }
     });
 
+    // Handle form submission
+    $('#eventForm').submit(function(e) {
+        e.preventDefault();  // Prevent the default form submission
+
+        var eventName = $('#EventName').val();
+        var startDate = $('#StartDate').val();
+        var endDate = $('#EndDate').val();
+
+        // Add event to the calendar
+        $('#calendar').fullCalendar('renderEvent', {
+            title: eventName,
+            start: startDate,
+            end: endDate,
+            allDay: true  // or determine based on your start/end times
+        });
+
+        // Optionally, clear the form fields
+        $('#EventName').val('');
+        $('#StartDate').val('');
+        $('#EndDate').val('');
+    });
 });
