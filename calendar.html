@@ -36,7 +36,31 @@
     </div>
 
 </div>
-
+<script>
+    $(document).ready(function() {
+        // Initialize the calendar
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,basicWeek,basicDay'
+            },
+            defaultDate: new Date(),
+            editable: true,
+            eventLimit: true,
+            events: function(start, end, timezone, callback) {
+                // Retrieve the event from local storage
+                var storedEvent = localStorage.getItem('newEvent');
+                if (storedEvent) {
+                    callback([JSON.parse(storedEvent)]);
+                    // Optionally clear the stored event if it's no longer needed
+                    localStorage.removeItem('newEvent');
+                }
+            }
+        });
+    });
+    </script>
+    
 
 <script src="sketch.js"></script>
 <script src="calendar.js"></script>
