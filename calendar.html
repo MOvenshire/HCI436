@@ -36,32 +36,6 @@
     </div>
 
 </div>
-<script>
-    $(document).ready(function() {
-        // Initialize the calendar
-        $('#calendar').fullCalendar({
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,basicWeek,basicDay'
-            },
-            defaultDate: new Date(),
-            editable: true,
-            eventLimit: true,
-            events: function(start, end, timezone, callback) {
-                // Retrieve the events from local storage
-                var storedEvents = localStorage.getItem('newEvents');
-                if (storedEvents) {
-                    var eventsArray = JSON.parse(storedEvents);
-                    callback(eventsArray);
-                } else {
-                    // Handle case where no events are stored
-                    callback([]);
-                }
-            }
-        });
-    });
-    </script>
     
     
     
