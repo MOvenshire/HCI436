@@ -11,17 +11,25 @@ $(document).ready(function() {
         navLinks: true,
         eventLimit: true,
         events: function(start, end, timezone, callback) {
+
             var storedEvents = localStorage.getItem('events');
+
             if (storedEvents) {
                 storedEvents = JSON.parse(storedEvents).map(event => ({
                     ...event,
                     color: determineColor(event.priority),  // Apply color based on priority
-                    title: `${event.title} - ${event.eventtype} (Priority: ${event.priority})`
+                    title: `${event.title} - ${event.eventtype} (Priority: ${event.priority})`,
+                    start: event.start,  // Ensure date format is correct
+                    end: event.end
                 }));
                 callback(storedEvents);
+            } else {
+                callback([]);
             }
         }
     });
+});
+
 
     // Event listener for form submissions
     $('#eventForm').submit(function(e) {

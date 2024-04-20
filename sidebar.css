@@ -1,0 +1,7 @@
+.rightsidebar {
+    width: 10%; 
+    height: 100vh; 
+    background-color: lightgray; 
+    padding: 20px; 
+    box-sizing: border-box;
+}
