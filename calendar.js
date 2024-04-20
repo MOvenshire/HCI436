@@ -73,4 +73,3 @@ $(document).ready(function() {
         $('input[name="Priority"]').prop('checked', false);
         $('input[name="Flexible"]').prop('checked', false);
     }
-});
