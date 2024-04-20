@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="sidebar.css">
+    <title>Add Event</title>
     <style>
         body {
             font-size: 18px; /* Increase base font size for better visibility */
             display: flex;
             font-family: Arial, sans-serif; /* Sets a readable, neat font */
-        }
-        .rightsidebar {
-            width: 10%;
-            height: 100vh; /* Full height */
-            background-color:lightgray;
+            margin-right:0;
+            margin-top: 0;
         }
         .select-event {
             width: 90%;
@@ -30,8 +28,7 @@
             justify-content: space-between; /* Ensures spacing between the date inputs */
         }
         .fiftyfifty {
-            width: 48%; /* Adjusted for padding */
-            padding: 10px; /* Adding some padding for visual separation */
+            width: 50%; 
         }
         .event-type, .priority-type, .flexible-type {
             display: inline-block;
@@ -89,7 +86,7 @@
         }
         .cancel-button {
             padding: 12px 24px;
-            font-size: 18px;
+            font-size: 18px; /* bigger font size */
             cursor: pointer;
             background-color: #f44336; /* Red background for the cancel button */
             color: white; /* White text color */
