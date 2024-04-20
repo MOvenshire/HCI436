@@ -34,7 +34,7 @@ function setup() {
   
       // Hardcoded only for the user demo
       if (username === 'user' && password === 'password') {
-        window.location.href = 'addEvent.html';
+        window.location.href = 'calendar.html';
       } else {
         alert('Invalid username or password');
       }
