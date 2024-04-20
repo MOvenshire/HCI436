@@ -151,7 +151,12 @@
         <label class="event-type">
             <input type="radio" name="EventType" value="Hydrate" id="Hydrate">
             <img src="images/hydrate-icon.png" alt="Hydrate">
-        </label><br><br>
+        </label>
+        <label class="event-type">
+            <input type="radio" name="EventType" value="Study" id="Study">
+            <img src="images/hydrate-icon.png" alt="Hydrate">
+        </label>
+        <br><br>
         </div>
 
         <div class="form-section">
@@ -209,23 +214,78 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
     <script>
         $(document).ready(function() {
-        $('#eventForm').submit(function(e) {
-            e.preventDefault();
-
-            var event = {
-                title: $('#EventName').val(),
-                start: $('#StartDate').val(),
-                end: $('#EndDate').val(),
-                allDay: false // or true based on your input types
-            };
-
-            // Save the event to local storage
-            localStorage.setItem('newEvent', JSON.stringify(event));
-
-            // Optionally, redirect to the calendar page or display a message
-            alert('Event saved! Navigate to the calendar page to see it.');
+            $('#eventForm').submit(function(e) {
+                e.preventDefault();
+        
+                var eventType = $('input[name="EventType"]:checked').val();
+                var eventName = $('#EventName').val();
+                var startDate = $('#StartDate').val();
+                var endDate = $('#EndDate').val();
+        
+                var events = []; // Array to hold all events including breaks
+        
+                if (eventType === 'Study') {
+                    var startMoment = moment(startDate);
+                    var endMoment = moment(endDate);
+        
+                    // Ensure there is time to add at least one study session
+                    while(startMoment < endMoment) {
+                        // Define the end of the study session, which is 25 minutes after the start
+                        var sessionEnd = moment(startMoment).add(25, 'minutes');
+                        if (sessionEnd > endMoment) sessionEnd = endMoment;
+        
+                        events.push({
+                            title: eventName,
+                            start: startMoment.format(),
+                            end: sessionEnd.format(),
+                            allDay: false,
+                            type: eventType
+                        });
+        
+                        startMoment = sessionEnd;
+        
+                        // Check if there is time for a break
+                        if (startMoment < endMoment) {
+                            var breakEnd = moment(startMoment).add(5, 'minutes');
+                            if (breakEnd > endMoment) breakEnd = endMoment;
+        
+                            events.push({
+                                title: eventName + " Break",
+                                start: startMoment.format(),
+                                end: breakEnd.format(),
+                                allDay: false,
+                                type: 'Break'
+                            });
+        
+                            startMoment = breakEnd; // Update startMoment to the end of the break
+                        }
+                    }
+                } else {
+                    // For other event types, just use a single event
+                    events.push({
+                        title: eventName,
+                        start: startDate,
+                        end: endDate,
+                        allDay: false,
+                        type: eventType
+                    });
+                }
+        
+                // Retrieve existing events from local storage
+                var existingEvents = JSON.parse(localStorage.getItem('newEvents')) || [];
+        
+                // Combine old and new events
+                var combinedEvents = existingEvents.concat(events);
+        
+                // Save combined events to local storage
+                localStorage.setItem('newEvents', JSON.stringify(combinedEvents));
+        
+                alert('Event(s) saved! Navigate to the calendar page to see them.');
+            });
         });
-    });
-    </script>
+        </script>
+        
+        
+        
 </body>
 </html>

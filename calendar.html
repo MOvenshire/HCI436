@@ -49,17 +49,21 @@
             editable: true,
             eventLimit: true,
             events: function(start, end, timezone, callback) {
-                // Retrieve the event from local storage
-                var storedEvent = localStorage.getItem('newEvent');
-                if (storedEvent) {
-                    callback([JSON.parse(storedEvent)]);
-                    // Optionally clear the stored event if it's no longer needed
-                    localStorage.removeItem('newEvent');
+                // Retrieve the events from local storage
+                var storedEvents = localStorage.getItem('newEvents');
+                if (storedEvents) {
+                    var eventsArray = JSON.parse(storedEvents);
+                    callback(eventsArray);
+                } else {
+                    // Handle case where no events are stored
+                    callback([]);
                 }
             }
         });
     });
     </script>
+    
+    
     
 
 <script src="sketch.js"></script>
