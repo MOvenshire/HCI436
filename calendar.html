@@ -34,7 +34,34 @@
             color: black;
         }
 
-        
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  top: -5px;
+  right:105%;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
     </style>
 </head>
 <body>
@@ -58,28 +85,37 @@
 
 <div class="rightsidebar">
     <a href="settings.html"  >
-        <button type="button" class="sidebutton"><img class="buttonimg" src="images/gear-icon.png" ></button>
+        <button type="button" class="sidebutton tooltip" ><span class="tooltiptext">Settings</span><img class="buttonimg" src="images/gear-icon.png" ></button>
     </a>
     <a href="profile.html" >
-        <button type="button" class="sidebutton"><img class="buttonimg" src="images/profile-icon.png" ></button>
+        <button type="button" class="sidebutton tooltip"><span class="tooltiptext">Profile</span><img class="buttonimg" src="images/profile-icon.png" ></button>
     </a>
     <a href="addEvent.html" >
-        <button type="button" class="sidebutton"><img class="buttonimg" src="images/plus-icon.png" ></button>
+        <button type="button" class="sidebutton tooltip"><span class="tooltiptext">Upload Schedule From File</span><img class="buttonimg" src="images/plus-icon.png" ></button>
     </a>
-    <button id="toggleClean" class="sidebutton"><img class="buttonimg" src="images/hourglass-icon.png" ></button>
-    <button  class="sidebutton" onclick="toggleBackground()"><img class="buttonimg" src="images/daynight-icon.png" ></button>
+    <button id="toggleClean" class="sidebutton tooltip"><span class="tooltiptext">Schedule Smart Sorting</span><img class="buttonimg" src="images/hourglass-icon.png" ></button>
+    <button  class="sidebutton tooltip" onclick="toggleBackground()"><span class="tooltiptext">Dark Mode Toggle</span><img class="buttonimg" src="images/daynight-icon.png" ></button>
 </div>
   
 <script>
     function toggleBackground() {
         var body = document.body;
         var text1 = document.getElementById('calendar');
+        var tips = document.getElementsByClassName('tooltiptext');
         if (body.style.backgroundColor === 'black') {
             body.style.backgroundColor = 'white';
             text1.style.color = 'black';
+            for (var i = 0; i < tips.length; i++) {
+                tips[i].style.backgroundColor = 'black';
+                tips[i].style.color = 'white';
+            }
         } else {
             body.style.backgroundColor = 'black';
             text1.style.color = 'white';
+            for (var i = 0; i < tips.length; i++) {
+                tips[i].style.backgroundColor = 'white';
+                tips[i].style.color = 'black';
+            }
         }
     }
     </script>
