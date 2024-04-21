@@ -4,4 +4,14 @@
     background-color: lightgray; 
     padding: 20px; 
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.buttonimg {
+    padding-top: 5px;
+    width: 60%; /* Change this value to adjust width */ /* Maintain aspect ratio */
+}
+.sidebutton{
+    margin-top: 20px;
 }
