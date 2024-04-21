@@ -98,6 +98,49 @@
         .cancel-button:hover {
             background-color: #d32f2f; /* Darker red shade on hover */
         }
+        .return-button {
+            padding: 12px 24px;
+            font-size: 18px; /* Bigger font size */
+            cursor: pointer;
+            background-color: #2196F3; /* Blue background for the return button */
+            color: white; /* White text color */
+            border: none; /* Removes border */
+            border-radius: 4px; /* Rounded corners */
+            transition: background-color 0.3s; /* Smooth transition for hover effect */
+        }
+        .return-button:hover {
+            background-color: #1976D2; /* Darker blue shade on hover */
+        }
+
+
+        /* Tooltip container */
+        .tooltip {
+        position: relative;
+        display: inline-block;
+        border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+        }
+
+        /* Tooltip text */
+        .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 6px;
+        
+        /* Position the tooltip text - see examples below! */
+        position: absolute;
+        top: -5px;
+        right:105%;
+        z-index: 1;
+        }
+
+        /* Show the tooltip text when you mouse over the tooltip container */
+        .tooltip:hover .tooltiptext {
+        visibility: visible;
+        }
     </style>
 </head>
 <body>
@@ -209,10 +252,24 @@
         <input type="submit" value="Submit">
         <a href="calendar.html">
             <button type="button" class="cancel-button">Cancel</button>
+            <button type="button" class="return-button">Return</button>
         </a>
     </form>
     </div>  
-    <div class="rightsidebar"></div>
+    <div class="rightsidebar">
+        <a href="settings.html"  >
+            <button type="button" class="sidebutton tooltip" ><span class="tooltiptext">Settings</span><img class="buttonimg" src="images/gear-icon.png" ></button>
+        </a>
+        <a href="profile.html" >
+            <button type="button" class="sidebutton tooltip"><span class="tooltiptext">Profile</span><img class="buttonimg" src="images/profile-icon.png" ></button>
+        </a>
+        <a href="addEvent.html" >
+            <button type="button" class="sidebutton tooltip"><span class="tooltiptext">Add a new Event</span><img class="buttonimg" src="images/plus-icon.png" ></button>
+        </a>
+        <button id="toggleClean" class="sidebutton tooltip"><span class="tooltiptext">Schedule Smart Sorting</span><img class="buttonimg" src="images/hourglass-icon.png" ></button>
+        <button  class="sidebutton tooltip" onclick="toggleBackground()"><span class="tooltiptext">Dark Mode Toggle</span><img class="buttonimg" src="images/daynight-icon.png" ></button>
+    </div>
+      
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
