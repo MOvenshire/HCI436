@@ -21,6 +21,7 @@
             margin: 0; 
             height: 100%; 
             font-family: Arial, sans-serif; 
+            transition: .5s ease;
         }
         .calendar-container {  
             width: 90%; 
@@ -66,9 +67,22 @@
         <button type="button" class="sidebutton"><img class="buttonimg" src="images/plus-icon.png" ></button>
     </a>
     <button id="toggleClean" class="sidebutton"><img class="buttonimg" src="images/hourglass-icon.png" ></button>
+    <button  class="sidebutton" onclick="toggleBackground()"><img class="buttonimg" src="images/daynight-icon.png" ></button>
 </div>
   
-
+<script>
+    function toggleBackground() {
+        var body = document.body;
+        var text1 = document.getElementById('calendar');
+        if (body.style.backgroundColor === 'black') {
+            body.style.backgroundColor = 'white';
+            text1.style.color = 'black';
+        } else {
+            body.style.backgroundColor = 'black';
+            text1.style.color = 'white';
+        }
+    }
+    </script>
 <script src="sketch.js"></script>
 <script src="calendar.js"></script>
 <script src="googleapi.js"></script>
