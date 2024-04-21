@@ -34,6 +34,7 @@ function determineColor(priority) {
         case '3': return '#fdffb6'; // Light yellow
         default: return '#caffbf'; // Light green
     }
+
 }
 
 function clearFormFields() {
@@ -44,3 +45,4 @@ function clearFormFields() {
     $('input[name="Priority"]').prop('checked', false);
     $('input[name="Flexible"]').prop('checked', false);
 }
+
