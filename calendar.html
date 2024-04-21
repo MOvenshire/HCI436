@@ -11,6 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js"></script>
+    <script src="calendar.js" defer></script> 
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="sidebar.css">
     <meta charset="utf-8" />
@@ -91,7 +92,7 @@
         <button type="button" class="sidebutton tooltip"><span class="tooltiptext">Profile</span><img class="buttonimg" src="images/profile-icon.png" ></button>
     </a>
     <a href="addEvent.html" >
-        <button type="button" class="sidebutton tooltip"><span class="tooltiptext">Upload Schedule From File</span><img class="buttonimg" src="images/plus-icon.png" ></button>
+        <button type="button" class="sidebutton tooltip"><span class="tooltiptext">Add a new Event</span><img class="buttonimg" src="images/plus-icon.png" ></button>
     </a>
     <button id="toggleClean" class="sidebutton tooltip"><span class="tooltiptext">Schedule Smart Sorting</span><img class="buttonimg" src="images/hourglass-icon.png" ></button>
     <button  class="sidebutton tooltip" onclick="toggleBackground()"><span class="tooltiptext">Dark Mode Toggle</span><img class="buttonimg" src="images/daynight-icon.png" ></button>
@@ -125,6 +126,26 @@
 <script async defer src="https://apis.google.com/js/api.js"
         onload="this.onload=function(){};handleClientLoad()"
         onreadystatechange="if (this.readyState === 'complete') this.onload()"></script>
+<script>
+        function checkEvents() {
+    var currentTime = new Date();
+    var tenMinutesLater = new Date(currentTime.getTime() + 10 * 60000); // 10 minutes later
 
+    for (var i = 0; i < events.length; i++) {
+        var eventTime = new Date(events[i].start);
+        if (eventTime > currentTime && eventTime <= tenMinutesLater) {
+            alert('Event "' + events[i].name + '" is in the next 10 minutes!');
+            return; // Exit the loop after finding one event
+        }
+    }
+}
+        
+        window.onload = function() {
+            checkEvents();
+        };
+
+        // Check the time every minute (60000 milliseconds)
+        setInterval(checkTime, 60000);
+    </script>
 </body>
 </html>
