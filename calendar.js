@@ -29,10 +29,10 @@ $(document).ready(function() {
 });
 function determineColor(priority) {
     switch (priority) {
-        case '1': return '#ffadad'; // Light red
-        case '2': return '#ffd6a5'; // Light orange
-        case '3': return '#fdffb6'; // Light yellow
-        default: return '#caffbf'; // Light green
+        case '1': return '#9AC893'; 
+        case '2': return '#E7F094'; 
+        case '3': return '#D8775A';
+        default: return '#83B4D8';
     }
 
 }
