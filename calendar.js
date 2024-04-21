@@ -83,7 +83,7 @@ let cleaneventsArr = [
     //{ title: "Dance Class", start: "2024-05-04 18:00:00", end: "2024-05-04 19:30:00", priority: '0', allday: false, eventtype: "hobby", flexible: "yes"}
 ];
 
-var useCleanEvents = true;
+var useCleanEvents = false;
 $('#toggleClean').click(function() {
     // Toggle the useCleanEvents variable
     useCleanEvents = !useCleanEvents;
