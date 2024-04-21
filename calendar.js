@@ -143,8 +143,8 @@ function determineColor(priority) {
     switch (priority) {
         case '1': return '#9AC893'; 
         case '2': return '#E7F094'; 
-        case '3': return '#D8775A';
-        default: return '#83B4D8';
+        case '3': return '#D89A9E';
+        default: return '#9DD2EE';
     }
 
 }
