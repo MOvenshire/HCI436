@@ -2,58 +2,94 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login Screen</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <script src="login.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Scheduler</title>
     <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #e0f2f1; 
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
         }
-
-        #login-container {
+        header {
+            background-color: #26a69a;
+            color: #fff;
             padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 300px;
             text-align: center;
         }
-
-        input, button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        button {
-            background-color: #26a69a;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        button:hover {
+        nav {
             background-color: #00796b;
+            padding: 10px 0;
+            text-align: center;
         }
-
-        h1, h2 {
-            color: #333;
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+        nav a:hover {
+            background-color:#26a69a;
+        }
+        section {
+            padding: 20px;
+        }
+        footer {
+            background-color: #00796b;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
         }
     </style>
 </head>
 <body>
-    <div id="login-container"></div>
+    <header>
+        <h1>Time Tumbler</h1>
+    </header>
+    <nav>
+        <a href="#">Overview</a>
+        <a href="login.html">Prototype</a>
+        <a href="#">Milestone 1</a>
+        <a href="#">Milestone 2</a>
+        <a href="#">Milestone 3</a>
+
+    </nav>
+    <section>
+        <h2>Introduction</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra nunc non felis vehicula, sed faucibus lorem scelerisque. Proin id augue nec felis ultrices semper.</p>
+        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam dapibus efficitur magna, nec aliquam est ultricies a.</p>
+    </section>
+    <section>
+        <h2>Motivation</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra nunc non felis vehicula, sed faucibus lorem scelerisque. Proin id augue nec felis ultrices semper.</p>
+        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam dapibus efficitur magna, nec aliquam est ultricies a.</p>
+    </section>
+    <section>
+        <h2>Promotional Video</h2>
+    </section>
+    <section>
+        <h2>Design Process</h2>
+        <h3> Low Fidelity Prototype</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra nunc non felis vehicula, sed faucibus lorem scelerisque. Proin id augue nec felis ultrices semper.</p>
+        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam dapibus efficitur magna, nec aliquam est ultricies a.</p>
+        <h3>High Fidelity Prototype</h3>
+        <p>User evaluation analysis</p>
+    </section>
+    <section>
+        <h2>Insights based on Peer Reviews</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra nunc non felis vehicula, sed faucibus lorem scelerisque. Proin id augue nec felis ultrices semper.</p>
+        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam dapibus efficitur magna, nec aliquam est ultricies a.</p>
+    </section>
+    <section>
+        <h2>Conclusion and future work</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra nunc non felis vehicula, sed faucibus lorem scelerisque. Proin id augue nec felis ultrices semper.</p>
+        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam dapibus efficitur magna, nec aliquam est ultricies a.</p>
+    </section>
+
+    <footer>
+        <p>&copy; CSCE 436 - Final Project Team 10 Time Tumbler</p>
+    </footer>
 </body>
 </html>
