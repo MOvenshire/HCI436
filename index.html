@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Scheduler</title>
+    <title>Time Tumbler</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
+            background-image:url('images/transparentbgd.jpg');
+            background-size:cover;
+            background-repeat:no-repeat;
+            background-attachment:fixed;
         }
         header {
             background-color: #26a69a;
@@ -31,7 +34,7 @@
             background-color:#26a69a;
         }
         section {
-            padding: 20px;
+            padding: 5px;
         }
         footer {
             background-color: #00796b;
@@ -42,7 +45,47 @@
             width: 100%;
             bottom: 0;
         }
+        .carousel {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        }
+        .slide {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+        padding: 20px;
+        max-width:500px;
+        }
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const prevButton = document.querySelector(".prev-slide");
+            const nextButton = document.querySelector(".next-slide");
+            const slides = document.querySelectorAll(".carousel .slide");
+            let currentSlideIndex = 0;
+    
+            // Show the initial slide
+            showSlide(currentSlideIndex);
+    
+            // Event listeners for previous and next buttons
+            prevButton.addEventListener("click", () => {
+                currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+                showSlide(currentSlideIndex);
+            });
+    
+            nextButton.addEventListener("click", () => {
+                currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+                showSlide(currentSlideIndex);
+            });
+    
+            // Function to show a specific slide
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.style.display = i === index ? "block" : "none";
+                });
+            }
+        });
+    </script>
 </head>
 <body>
     <header>
@@ -50,10 +93,12 @@
     </header>
     <nav>
         <a href="#">Overview</a>
-        <a href="login.html">Prototype</a>
+        <a href="login.html">High Fidelity Prototype</a>
+        <!-- 
         <a href="m1.html">Milestone 1</a>
-        <a href="m2.html">Milestone 2</a>
-        <a href="m3.html">Milestone 3</a>
+        <a href="m2.html">Milestone 2</a> 
+        -->
+        <a href="m3.html">Slides and Final Video Presentation</a>
 
     </nav>
     <section>
@@ -70,20 +115,38 @@
     </section>
     <section>
         <h2>Promotional Video</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/xb9Ag91P0Es" frameborder="0" allowfullscreen></iframe>
     </section>
     <section>
         <h2>Design Process</h2>
         <h3> Low Fidelity Prototype</h3>
-        <img src="images/lofi1.png">
-        <p> A sample of the calendar that a user could create</p>
-        <img src="images/lofi2.png">
-        <p> The "add event" screen, with options for the priority and flexibility of the event, as well as the ability to add a fun, personal event type in the form of an emoji. There also exists the option to upload a calendar file from another app.</p>
-        <img src="images/lofi3.png">
-        <p> A cluttered calendar after adding events and uploading other calendars.</p>
-        <img src="images/lofi4.png">
-        <p>After hitting the optimize button, the calendar removes any non mandatory events marked by the user and adds breaks in between them.</p>
-
-        <h3>High Fidelity Prototype</h3>
+        <div class ="carousel">
+            <button class="prev-slide">Previous</button>
+            <div class="slide">
+                <h3>Sample Page</h3>
+                <img src="images/lofi1.png" alt="Low Fidelity Prototype 1">
+                <p>A sample of the calendar that a user could create</p>
+            </div>
+            <div class="slide">
+                <h3>Add Event Screen</h3>
+                <img src="images/lofi2.png" alt="Low Fidelity Prototype 2">
+                <p>The "add event" screen, with options for the priority and flexibility of the event, as well as the ability to add a fun, personal event type in the form of an emoji. There also exists the option to upload a calendar file from another app.</p>
+            </div>
+            <div class="slide">
+                <h3>Cluttered Calendar</h3>
+                <img src="images/lofi3.png" alt="Low Fidelity Prototype 3">
+                <p>A cluttered calendar after adding events and uploading other calendars.</p>
+            </div>
+            <div class="slide">
+                <h3>Optimized Calendar</h3>
+                <img src="images/lofi4.png" alt="Low Fidelity Prototype 4">
+                <p>After hitting the optimize button, the calendar removes any non-mandatory events marked by the user and adds breaks in between them.</p>
+            </div>
+            <button class="next-slide">Next</button>
+        </div>
+        <h3>High Fidelity Prototype is available on the Prototype Tab above</h3>
+    </section>
+    <section>
         <p>User evaluation analysis</p>
     </section>
     <section>
@@ -98,6 +161,8 @@
     
     <section>
         <h2>  </h2>
+        <br>
+        <br>
         <!-- This is just so the footer doesnt cover the last section -->
     </section>
     <footer>
