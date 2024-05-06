@@ -2,58 +2,194 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login Screen</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <script src="login.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Tumbler</title>
     <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #e0f2f1; 
-        }
+            font-family: Arial, sans-serif;
+            background-image:url('images/transparentbgd.jpg');
+            background-size:cover;
+            background-repeat:no-repeat;
+            background-attachment:fixed;
+            justify-content:center;
 
-        #login-container {
+        }
+        header {
+            background-color: #26a69a;
+            color: #fff;
             padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 300px;
             text-align: center;
         }
-
-        input, button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        button {
-            background-color: #26a69a;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        button:hover {
+        nav {
             background-color: #00796b;
+            padding: 10px 0;
+            text-align: center;
         }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+        nav a:hover {
+            background-color:#26a69a;
+        }
+        section {
+            padding: 5px;
+            text-align: center;
+            justify-content:center;
+        }
+        footer {
+            background-color: #00796b;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        h2 {
+            color:#00796b;
+        }
+        hr{
+            color:#26a69a;
+        }
+        .carousel {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        justify-content:center;
+        }
+        .slide {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+        padding: 20px;
+        max-width:500px;
 
-        h1, h2 {
-            color: #333;
         }
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const prevButton = document.querySelector(".prev-slide");
+            const nextButton = document.querySelector(".next-slide");
+            const slides = document.querySelectorAll(".carousel .slide");
+            let currentSlideIndex = 0;
+    
+            // Show the initial slide
+            showSlide(currentSlideIndex);
+    
+            // Event listeners for previous and next buttons
+            prevButton.addEventListener("click", () => {
+                currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+                showSlide(currentSlideIndex);
+            });
+    
+            nextButton.addEventListener("click", () => {
+                currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+                showSlide(currentSlideIndex);
+            });
+    
+            // Function to show a specific slide
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.style.display = i === index ? "block" : "none";
+                });
+            }
+        });
+    </script>
 </head>
 <body>
-    <div id="login-container"></div>
+    <header>
+        <h1>Time Tumbler</h1>
+    </header>
+    <nav>
+        <a href="#">Overview</a>
+        <a href="login.html">High Fidelity Prototype</a>
+        <a href="m1.html">Milestone 1</a>
+        <a href="m2.html">Milestone 2</a> 
+        <a href="m3.html">Milestone 3</a>
+    </nav>
+    <section>
+        <h2>Introduction</h2>
+        <hr>
+        <p>Time Tumbler is a day planner and calendar that places a focus on making the lives of those with ADHD easier.</p>
+        <p> It does this through tools like clear organization and features such as a day organizing algorithm that both clears conflicts and fits in breaks wherever possible.</p>
+    </section>
+    <section>
+        <h2>Motivation</h2>
+        <hr>
+        <p>An adult with ADHD may struggle to manage a calendar with too many overlapping events. Current calendar applications, such as Google Calendar or Notion, lack the ability to schedule events for the user. Our web application streamlines this process and acts as a personal secretary that will optimize a given schedule. This will also update study sessions to include breaks and a more consistent workflow. This creates a healthier interaction between a user that might struggle to focus for long periods of time and a more fulfilling schedule.</p>
+        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed viverra nunc non felis vehicula, sed faucibus lorem scelerisque. Proin id augue nec felis ultrices semper.</p> -->
+        <!-- <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam dapibus efficitur magna, nec aliquam est ultricies a.</p> -->
+    </section>
+    <section>
+        <h2>Promotional Video</h2>
+        <iframe width="1120" height="630" src="https://www.youtube.com/embed/xb9Ag91P0Es" frameborder="0" allowfullscreen></iframe>
+    </section>
+    <section>
+        <h2>Design Process</h2>
+        <hr>
+        <p> Note:High Fidelity Prototype is available on the Tab above</p>
+        <h3> Low Fidelity Prototype</h3>
+        <div class ="carousel">
+            <button class="prev-slide">Previous</button>
+            <div class="slide">
+                <h3>Sample Page</h3>
+                <img src="images/lofi1.png" alt="Low Fidelity Prototype 1">
+                <p>A sample of the calendar that a user could create</p>
+            </div>
+            <div class="slide">
+                <h3>Add Event Screen</h3>
+                <img src="images/lofi2.png" alt="Low Fidelity Prototype 2">
+                <p>The "add event" screen, with options for the priority and flexibility of the event, as well as the ability to add a fun, personal event type in the form of an emoji. There also exists the option to upload a calendar file from another app.</p>
+            </div>
+            <div class="slide">
+                <h3>Cluttered Calendar</h3>
+                <img src="images/lofi3.png" alt="Low Fidelity Prototype 3">
+                <p>A cluttered calendar after adding events and uploading other calendars.</p>
+            </div>
+            <div class="slide">
+                <h3>Optimized Calendar</h3>
+                <img src="images/lofi4.png" alt="Low Fidelity Prototype 4">
+                <p>After hitting the optimize button, the calendar removes any non-mandatory events marked by the user and adds breaks in between them.</p>
+            </div>
+            <button class="next-slide">Next</button>
+        </div>
+    </section>
+    <section>
+        <section>
+            <h2>User evaluation analysis</h2>
+            <img src="images/usereval3.png" alt="Low Fidelity Prototype 4">
+            <p>Responses to the prototype proved positive, with most users stating that they could see themselves using the service on a weekly or daily basis. Many users even stated that they could see themselves recomending the complete product to a friend. Additionally the core functionality of the design, the automatic organization of cluttered daily events, was stated to be the most beneficial feature of the product. This gives grounds to the concept's potential viability as a complete product. </p>
+        </section>
+        <hr>
+    </section>
+    <section>
+        <h2>Insights Based on Peer Reviews</h2>
+        <p>We received a variety of feedback from our peers following the presentation of our project. Here's a synthesis of the insights, highlighting what resonated well and areas where we can improve.</p>
+        <h3>Positive Feedback:</h3>
+        <p>Many appreciated our proof of concept and the practical demonstration of our software. The functionality, particularly the Pomodoro method and color coding features, was praised for its usefulness, especially for users with ADHD. This validation from peers confirms the effectiveness of these key features in our design.</p>
+        <p>Our user interface received compliments for its neatness and professional appearance. This is crucial as it enhances user engagement and makes the application more inviting to use.</p>
+        <p>Our ability to convey the importance and functionality of our product effectively during the presentation was well-received. The professionalism and clarity in our presentation helped in communicating our objectives and the value of our product clearly.</p>
+        <h3>Areas for Improvement:</h3>
+        <p>Some peers noted that the audio quality in our demo could be improved, and suggested that an in-person presentation might have been more impactful. These are important aspects to consider for future demonstrations to ensure our message is delivered clearly without distractions.</p>
+        <p>Even though we tried to explain the unique features of Time Tumbler, some peers felt unclear about how our product differentiates from existing solutions like Google Calendar. Going forward, we need to articulate the unique attributes of our scheduler more clearly, especially our innovative algorithms and their benefits.</p>
+        <p>Feedback indicated a desire for more detailed explanations of the algorithms we use for scheduling and sorting. This is important as it points to the need for transparency in how our application processes and organizes user data to build trust and credibility.</p>
+        <p>Suggestions for a more interactive demo video highlight a need for engaging our audience more effectively. Interactive elements could help in demonstrating the application’s functionality more vividly.</p>
+    </section>
+    <section>
+        <h2>Conclusion and future work</h2>
+        <hr>
+        <p>For future iterations, we will consider further customization. Currently, the prototypes are limited by the values manually added to the calendar. We would like to implement the ability to upload an ics file to pre-populate or update the calendar.  We will also increase customization by increasing the settings page to allow users to select their calendar colors. Users might also prefer a system that allows them to set working hours so that the scheduler does not move things outside of working hours. Additionally, we will allow users to edit the duration of study breaks, and if they so wish, they will be also able to toggle this feature for uninterrupted study sessions.</p>
+    </section>
+    
+    <section>
+        <h2>  </h2>
+        <br>
+        <br>
+        <!-- This is just so the footer doesnt cover the last section -->
+    </section>
+    <footer>
+        <p>&copy; CSCE 436 - Final Project Team 10 Time Tumbler</p>
+    </footer>
 </body>
 </html>
